@@ -1,0 +1,17 @@
+{
+  "name": "black-kit",
+  "description": "ChameleonProtocol",
+  "version": "1.0.1",
+  "homepage": "http://ChameleonProtocol",
+  "author": "Creative Tim",
+  "license": "Creative by ChameleonProtocol",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-install": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.3",
+    "gulp-open": "^2.1.0"
+  }
+}

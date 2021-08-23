@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <title>
+    ChameleonProtocol
+  </title>
+  <link rel="stylesheet" type="text/css" href="./tip_files/ns-default.css">
+  <link rel="stylesheet" type="text/css" href="./tip_files/ns-style-growl.css">
+  <script src="./tip_files/modernizr.custom.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="./fontawesome/css/all.css" rel="stylesheet">
+  <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="./assets/css/blk-design-system.css?v=1.0.0" rel="stylesheet" />
+  <link href="./assets/demo/demo.css" rel="stylesheet" />
+
+  <style>
+    .g-number {
+      position: absolute;
+      width: 105px;
+      top: 27%;
+      text-align: center;
+      z-index: 10;
+      color: #fff;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+    }
+
+    .g-contrast {
+      filter: contrast(10) hue-rotate(0);
+      width: 140px;
+      height: 140px;
+      /* background-color: #000; */
+      overflow: hidden;
+      -webkit-animation: hueRotate 10s infinite linear;
+      animation: hueRotate 10s infinite linear;
+    }
+
+    .g-circle {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      box-sizing: border-box;
+      filter: blur(8px);
+    }
+
+    .g-circle::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0);
+      width: 120px;
+      height: 120px;
+      background-color: #00ff6f;
+      border-radius: 42% 38% 62% 49%/45%;
+      -webkit-animation: rotate 10s infinite linear;
+      animation: rotate 10s infinite linear;
+    }
+
+    .g-circle::before {
+      content: "";
+      position: absolute;
+      width: 106px;
+      height: 106px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-color: #000;
+      z-index: 10;
+    }
+
+    .g-contrast1 {
+      filter: contrast(10) hue-rotate(0);
+      width: 60px;
+      height: 60px;
+      border-radius: 150px;
+      overflow: hidden;
+      -webkit-animation: hueRotate 10s infinite linear;
+      animation: hueRotate 10s infinite linear;
+    }
+
+    .g-circle1 {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      box-sizing: border-box;
+      filter: blur(8px);
+    }
+
+    .g-circle1::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0);
+      width: 60px;
+      height: 60px;
+      background-color: #00ff6f;
+      border-radius: 42% 38% 62% 49%/45%;
+      -webkit-animation: rotate 10s infinite linear;
+      animation: rotate 10s infinite linear;
+    }
+
+    .g-circle1::before {
+      content: "";
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-color: #000;
+      z-index: 10;
+    }
+
+    @-webkit-keyframes rotate {
+      50% {
+        border-radius: 45%/42% 38% 58% 49%;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(720deg);
+      }
+    }
+
+    @keyframes rotate {
+      50% {
+        border-radius: 45%/42% 38% 58% 49%;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(720deg);
+      }
+    }
+
+    @-webkit-keyframes moveToTop {
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.1;
+        transform: translate(-50%, -180px);
+      }
+    }
+
+    @keyframes moveToTop {
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.1;
+        transform: translate(-50%, -180px);
+      }
+    }
+
+    @-webkit-keyframes hueRotate {
+      100% {
+        filter: contrast(15) hue-rotate(360deg);
+      }
+    }
+
+    @keyframes hueRotate {
+      100% {
+        filter: contrast(15) hue-rotate(360deg);
+      }
+    }
+
+    .ns-box-inner>p {
+      max-width: 290px;
+      word-wrap: break-word
+    }
+
+    .loader,
+    .loader:after {
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 3px;
+    }
+
+    .loader {
+      text-indent: -9999em;
+      border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+      border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+      border-left: 1.1em solid #ffffff;
+      -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-animation: load8 1.1s infinite linear;
+      animation: load8 1.1s infinite linear;
+    }
+
+    @-webkit-keyframes load8 {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes load8 {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+
+    .page-header .content-center.brand {
+      width: 100%;
+    }
+
+    .card .card-body,
+    .tab-space {
+      padding-top: 0px;
+    }
+
+    #maina {
+      border-radius: 70px;
+      padding: 10px;
+      background: #b74cd5;
+      color: #fff;
+    }
+
+    .loaderfolst {
+      position: relative;
+      width: 2.5em;
+      height: 2.5em;
+      transform: rotate(165deg);
+    }
+
+    .loaderfolst:before,
+    .loaderfolst:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 0.5em;
+      height: 0.5em;
+      border-radius: 0.25em;
+      transform: translate(-50%, -50%);
+    }
+
+    .loaderfolst:before {
+      animation: before 2s infinite;
+    }
+
+    .loaderfolst:after {
+      animation: after 2s infinite;
+    }
+
+    @keyframes before {
+      0% {
+        width: 0.5em;
+        box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+      }
+
+      35% {
+        width: 2.5em;
+        box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+      }
+
+      70% {
+        width: 0.5em;
+        box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+      }
+
+      100% {
+        box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+      }
+    }
+
+    @keyframes after {
+      0% {
+        height: 0.5em;
+        box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+      }
+
+      35% {
+        height: 2.5em;
+        box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+      }
+
+      70% {
+        height: 0.5em;
+        box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+      }
+
+      100% {
+        box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+      }
+    }
+
+
+
+    .loaderfolst {
+      position: absolute;
+      top: calc(50% - 1.25em);
+      left: calc(50% - 1.25em);
+    }
+
+    .col-4 {
+      text-align: end;
+    }
+
+    .btn.dropdown-toggle[data-toggle="dropdown"] {
+      padding: 5px;
+    }
+
+    .hide,
+    .hide1 {
+      display: none;
+    }
+
+    .hide1 {
+      display: none !important;
+    }
+
+    .nav-tabs {
+      padding: 0.5rem 0rem;
+    }
+
+    .card .card-header {
+      padding: 15px 0px 0px;
+    }
+
+    .nav-tabs>.nav-item>.nav-link {
+      padding: 10px 18px;
+    }
+
+    .navbar-brand {
+      margin-right: 0px;
+      word-wrap: break-word !important;
+      white-space: normal;
+    }
+
+    .tags {
+      height: 120px;
+      width: 120px;
+      border-radius: 120px !important;
+      text-align: center;
+      color: #fff;
+      background: #fff0 !important;
+      box-shadow: 0 1px 20px 1px rgb(255 255 255 / 31%);
+    }
+
+    .tag1 {
+      top: 150px;
+      left: 60%;
+      animation: move-left-right 4s infinite !important;
+    }
+
+    .tag2 {
+      top: 280px;
+      left: 60%;
+      animation: move-left-right 5s infinite !important;
+    }
+
+    .tag3 {
+      top: 410px;
+      left: 60%;
+      animation: move-left-right 6s infinite !important;
+    }
+
+    .Amountdropdown {
+      padding-left: 10px !important;
+    }
+
+    @media only screen and (max-width: 625px) and (min-width: 320px) {
+      #anonymous {
+        display: block !important;
+      }
+
+      .mdcenter {
+        margin-left: 0px;
+        margin: 0 auto !important;
+      }
+
+      .rules {
+        display: none;
+      }
+
+      input {
+        width: 100% !important;
+      }
+
+      .minihide {
+        display: none;
+      }
+
+      #cardrowd {
+        display: none;
+      }
+
+      .tag1 {
+        top: 120px;
+        left: 1%;
+        animation: none !important;
+      }
+
+      .tag2 {
+        top: 120px;
+        left: 35%;
+        animation: none !important;
+      }
+
+      .tag3 {
+        top: 120px;
+        left: 68%;
+        animation: none !important;
+      }
+
+      .page-header .content-center {
+        top: 70%;
+      }
+
+      .g-circle::before {
+        position: absolute;
+        width: 140px !important;
+        height: 140px !important;
+      }
+
+      .g-circle {
+        filter: blur(25px) !important;
+      }
+
+      .g-circle::after {
+        background-color: #000;
+      }
+
+    }
+  </style>
+</head>
+
+<body class="index-page">
+  <button id="hidemsgbutton" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#exampleModal">
+    Launch
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="modal-title"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="modal-title" class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modal-body" class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button id="hideclosebutton" type="button" class="btn btn-secondary hideclosebutton"
+            data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary hideclosebutton" data-dismiss="modal">confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="hidemsgbutton1" type="button" class="btn btn-primary hide" data-toggle="modal"
+    data-target="#exampleModal1">
+    Launch
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="modal-title1"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="modal-title1" class="modal-title">title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modal-body1" class="modal-body">
+          <div style="text-align: center;">
+            <img id="tronlinklogo" style="height: 50px;background: #d94fd3;" src="tronlinklogo.png">
+          </div>
+          <div id="msg1loaderfolst" style="padding: 10px;margin: 10px;position: relative;width: 0.5em;"
+            class="loaderfolst"></div>
+          <div style="text-align: center;">action:<span id="operationspan"></span></div>
+          <div style="text-align: center;"><span id="meetingspan"></span>times meeting</div>
+          <div style="text-align: center;" class="hide" id="restspan"> </div>
+          <div style="text-align: center;">Please wait patiently for the operation result</div>
+        </div>
+        <div class="modal-footer">
+          <button id="hideclosebutton1" type="button" class="btn hide btn-secondary hideclosebutton"
+            data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/" rel="ChameleonProtocol" title="tooltip" data-placement="bottom">
+          <img width='200px' src="./logo.png">
+
+        </a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a>
+                ChameleonProtocol
+              </a>
+            </div>
+            <div class="col-6 collapse-close text-right">
+              <button id="simple-remove" type="button" class="navbar-toggler" data-toggle="collapse"
+                data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" title="Whitepaper" data-placement="bottom" href="/docs/ChameleonProtocol_en.pdf">
+              <p>Whitepaper</p>
+            </a>
+          </li>
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" title="ETH Mainnet" data-placement="bottom" href="https://eth.clp.ac">
+              <p>ETH</p>
+            </a>
+          </li>
+
+
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" style="display: none;" id="anonymous" title="Binance smart chain"
+              data-placement="bottom">
+              <p>anonymous</p>
+            </a>
+          </li>
+
+          <li class="nav-item p-0">
+            <button id='pendingloaderdiv' style="padding: 8px;display: none;" type="button" class="btn btn-primary">
+              <span style="display: inline;">pending</span>
+              <span id="pendingnum" style="display: inline;" class="badge badge-default">0</span>
+              <div id='pendingloader' style="float: right;margin-left: 5px;display: none;" class="loader"> </div>
+            </button>
+          </li>
+
+          <li class="nav-item p-0">
+            <a id="getWalleta" style="padding-left: 10px;padding-right: 10px;" rel="tooltip"
+              class="nav-link btn btn-primary d-lg-block" href="javascript:void(0)">
+              <span style="color: #fff !important;" id="UserAccount">Connect wallet</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <div class="wrapper">
+    <div class="page-header header-filter">
+      <!-- <div class="squares square1"></div> -->
+      <div class="squares square2"></div>
+      <div class="squares square3"></div>
+      <!-- <div class="squares square4"></div> -->
+      <div class="squares square5"></div>
+      <!-- <div class="squares square6"></div> -->
+      <div class="squares square7"></div>
+
+      <div class="squares tags tag1">
+        <div class="g-number">
+          <div id="tag1">
+            1
+          </div>
+          <div>
+            Total orders
+          </div>
+        </div>
+        <div class="g-contrast">
+          <div class="g-circle"></div>
+        </div>
+      </div>
+
+      <div class="squares tags tag2">
+        <div class="g-number">
+          <div id="tag2">
+            1
+          </div>
+          <div>
+            Total pledges
+          </div>
+        </div>
+        <div class="g-contrast">
+          <div class="g-circle"></div>
+        </div>
+      </div>
+
+      <div class="squares tags tag3">
+        <div class="g-number">
+          <div id="tag3">
+            73%-401%
+          </div>
+          <div>
+            USDT APY
+          </div>
+        </div>
+        <div class="g-contrast">
+          <div class="g-circle"></div>
+        </div>
+      </div>
+
+
+
+      <div class="container">
+        <div class="content-center brand">
+          <div class="section section-tabs">
+            <div style="width: 310px;    margin-left: 60px;" class="title mdcenter">
+              <h1>Chameleon Protocol</h1>
+              <h4>
+                Chameleon Protocol,a very powerful anonymous coin shuffle protocol that supports multi-chain USDT
+                coinshuffle transfer technology to insure the transfer of assets on the chain have privacy
+                anduntraceability.
+                <br>
+              </h4>
+              <a id="maina" href="#main" class="mb-3">Let's Go</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="section section-basic">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col-md-12 ml-auto col-xl-12 mr-auto">
+                    <!-- Nav tabs -->
+                    <div class="card">
+                      <div class="card-header">
+                        <ul id="cardnavul" class="nav nav-tabs nav-tabs-primary justify-content-center" role="tablist">
+
+                          <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
+                              <i class="tim-icons icon-credit-card"></i> <span class="minihide">Deposits</span>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                              <i class="tim-icons icon-spaceship "></i> <span class="minihide">Withdrawals</span>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
+                              <i class="tim-icons icon-single-copy-04 "></i> <span class="minihide">OrderInfo</span>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#link4" role="tablist">
+                              <i class="tim-icons icon-bag-16 "></i> <span class="minihide">Card</span>
+                            </a>
+                          </li>
+
+                        </ul>
+                      </div>
+                      <div class="card-body">
+
+                        <!-- Tab panes -->
+                        <div class="tab-content tab-space">
+                          <div style="text-align: left;padding-left: 15px;" class="tab-pane active" id="link1">
+                            <div class="row">
+                              <div class="col-4">
+                                <a class="navbar-brand" rel="tooltip" title="Your Balance" data-placement="bottom">
+                                  <span>Balance:</span>
+                                </a>
+
+                              </div>
+                              <div class="col-8">
+                                <span class="navbar-brand" id="cashbalance">0</span>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                                <a class="navbar-brand" rel="tooltip" title="Amount" data-placement="bottom">
+                                  <span>Amount:</span>
+                                </a>
+                              </div>
+                              <div class="col-8" style="min-width: 190px;">
+                                <a id="Cashdropdown" class="btn btn-secondary dropdown-toggle" role="button"
+                                  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false">
+                                  Selection Amount
+                                </a>
+
+                                <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item Amountdropdown"><img width="18px" src="./USDT.png">100USDT</a>
+                                  <a class="dropdown-item Amountdropdown"><img width="18px"
+                                      src="./USDT.png">1000USDT</a>
+                                  <a class="dropdown-item Amountdropdown"><img width="18px"
+                                      src="./USDT.png">10000USDT</a>
+                                  <a class="dropdown-item Amountdropdown"><img width="18px"
+                                      src="./USDT.png">100000USDT</a>
+                                  <a class="dropdown-item Amountdropdown"><img width="18px"
+                                      src="./USDT.png">1000000USDT</a>
+                                </div>
+                                <br>
+                                <span style="display: none;" id="feespan"> Fee: <span id="fee"></span> USDT</span>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                                <a class="navbar-brand" rel="tooltip" title="Generate the private key"
+                                  data-placement="bottom">
+                                  <span>Get P.K:</span>
+                                </a>
+                              </div>
+                              <div class="col-8">
+                                <input id="pkinput" disabled style="display: inline;width: 210px;color: #fff;"
+                                  type="text" class="form-control" placeholder="Generate the private key">
+                                <a class="navbar-brand" rel="tooltip" title="Generate the private key"
+                                  data-placement="bottom">
+                                  <button id="Getpk" class="btn btn-icon btn-round" type="button">
+
+                                    <span> <i class="tim-icons icon-key-25"></i></span>
+
+                                  </button>
+                                </a>
+                                <a class="navbar-brand" rel="tooltip" title="Copy the private key"
+                                  data-placement="bottom">
+                                  <button id="copypk" class="btn btn-icon btn-round" type="button">
+
+                                    <span> <i class="tim-icons icon-calendar-60"></i></span>
+
+                                  </button>
+                                </a>
+                                <a class="navbar-brand" rel="tooltip" title="Download the private key"
+                                  data-placement="bottom">
+                                  <button id="Downloadpk" class="btn btn-icon btn-round" type="button">
+                                    <span> <i class="tim-icons icon-cloud-download-93"></i></span>
+                                  </button>
+                                </a>
+                              </div>
+                            </div>
+
+
+
+                            <div class="row">
+                              <div class="col-4">
+
+                                <a class="navbar-brand" rel="tooltip" title="Withdraw Principal Address"
+                                  data-placement="bottom">
+                                  <span>Principal:</span>
+                                </a>
+                              </div>
+                              <div class="col-8">
+                                <input id='withdrawaddress' style="display: inline;width: 210px;" type="text"
+                                  class="form-control" placeholder="Withdraw Principal Address">
+                              </div>
+                            </div>
+
+
+                            <div class="row">
+                              <div class="col-4">
+                                <a class="navbar-brand" rel="tooltip" title="Interest Address" data-placement="bottom">
+                                  <span>Interest:</span>
+                                </a>
+
+                              </div>
+                              <div class="col-8">
+                                <input id='rateaddress' style="display: inline;width: 210px" type="text"
+                                  class="form-control" placeholder="Withdraw Interest Address">
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+
+                              </div>
+                              <div class="col-8">
+                                <button id='approvalbutton' type="button" class="btn btn-primary hide">
+                                  <i id="approvali" style="left: 10px; width: 1rem; height: 1rem;  top: 8px; bottom: 0;"
+                                    class="loaderfolst hide"></i>
+                                  Approval
+                                </button>
+                                <button id='sendbutton' type="button" class="btn btn-primary">
+                                  <i id="sendi" style="left: 10px;width: 1rem;height: 1rem;top: 8px;bottom: 0;"
+                                    class="loaderfolst hide"></i>
+                                  Submit
+                                </button>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-2 rules">
+
+                              </div>
+                              <div class="col-12 col-md-8">
+                                <blockquote>
+                                  <span class="navbar-brand">Rules:</span>
+                                  <p class="text-muted blockquote">
+                                    1. The private key is randomly generated and unique. Please keep the private key
+                                    properly after generation. If the private key is lost, you will not be able to
+                                    retrieve your assets.
+                                    <br>
+                                    2. Please fill in your withdrawal address carefully (the address for withdrawing the
+                                    principal and the one for withdrawing interest cannot be repeated), only the
+                                    designated withdrawal address can withdraw your deposit and interest after the
+                                    pledge. If the address is filled in incorrectly, your assets will be lost.
+                                    <br>
+                                    3.Interest will be calculated automatically after pledged for 24 hours, and every 24
+                                    hours is a pledge cycle (it is not calculated interest if less than one pledge
+                                    cycle. For example, the total time a user pledges is 50 hours, the interest
+                                    calculation cycle is: (50-24)/24=1, the contract only calculates the interest for 1
+                                    cycle). The interest rate is a random blind box, and the interest rate for each
+                                    pledge cycle is between 0.2% and 1.1%. This corresponds to an annual interest rate
+                                    of between 73% and 401%.
+                                    <br>
+                                    4.Each deposit slip can only withdraw the principal first and then the interest.
+
+
+                                  </p>
+                                </blockquote>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div style="text-align: left;padding-left: 15px;" class="tab-pane" id="link2">
+                            <div class="row">
+                              <div class="col-4">
+                                <a class="navbar-brand" rel="tooltip" data-placement="bottom">
+                                  <span>Type:</span>
+                                </a>
+
+                              </div>
+                              <div class="col-8">
+                                <div class="form-check form-check-radio form-check-inline">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                      id="inlineRadio1" checked value="option1">Withdraw capital
+                                    <span class="form-check-sign"></span>
+                                  </label>
+                                </div>
+                                <div class="form-check form-check-radio form-check-inline">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                      id="inlineRadio2" value="option2"> withdraw interest
+                                    <span class="form-check-sign"></span>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+
+                                <a class="navbar-brand" rel="tooltip" title="Private key" data-placement="bottom">
+                                  <span>P.K:</span>
+                                </a>
+                              </div>
+                              <div class="col-8">
+                                <input id='typepk' style="display: inline;width: 210px;" type="text"
+                                  class="form-control" placeholder="Private key">
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+
+                              </div>
+                              <div class="col-8">
+                                <button id='typepkbutton' type="button" class="btn btn-primary">
+                                  <i id="typepki" style="left: 10px;width: 1rem;height: 1rem;top: 8px;bottom: 0;"
+                                    class="loaderfolst hide"></i>
+                                  Submit
+                                </button>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-2 rules">
+
+                              </div>
+                              <div class="col-12 col-md-8">
+                                <blockquote>
+                                  <span class="navbar-brand">Rules:</span>
+                                  <p class="text-muted blockquote">
+                                    1. You must withdraw the principal before you can withdraw the interest, and the
+                                    principal withdrawn is always the amount after deducting the fees.
+                                    <br>
+                                    2. To withdraw the principal and interest, please switch to the wallet address you
+                                    specified when you made the deposit, otherwise you will not be able to withdraw.
+                                    <br>
+                                    3. Please refer to the order pledge time for whether interest has been generated,
+                                    according to “(hours-24)/24 = pledge cycle”, if more than one pledge cycle, then
+                                    interest will be generated.
+
+
+                                  </p>
+                                </blockquote>
+                              </div>
+                            </div>
+                          </div>
+                          <div style="text-align: left;padding-left: 15px;" class="tab-pane" id="link3">
+
+
+                            <div class="row">
+
+                              <div class="col-4">
+
+                                <a class="navbar-brand" rel="tooltip" title="Private Key" data-placement="bottom">
+                                  <span>P.K:</span>
+                                </a>
+                              </div>
+                              <div class="col-8">
+                                <input id='orderpk' style="display: inline;width: 210px;" type="text"
+                                  class="form-control" placeholder="Private Key">
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                              </div>
+                              <div class="col-8">
+                                <button id='Selectbutton' type="button" class="btn btn-primary">
+                                  <i id="Selecti" style="left: 10px;width: 1rem;height: 1rem;top: 8px;bottom: 0;"
+                                    class="loaderfolst hide"></i>
+                                  Submit
+                                </button>
+                              </div>
+                            </div>
+
+                            <div style="display: none;" id="orderinfodiv">
+                              <div class="row">
+                                <div class="col-2 rules"> </div>
+                                <div class="col-4 col-md-3">
+                                  <a class="navbar-brand" rel="tooltip" title="Order amount" data-placement="bottom">
+                                    <span>Order amount:</span>
+                                  </a>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                  <span class="navbar-brand" id="orderamountspan">0</span><span> USDT</span>
+                                </div>
+
+                              </div>
+                              <div class="row">
+                                <div class="col-2 rules"> </div>
+                                <div class="col-4 col-md-3">
+                                  <a class="navbar-brand" rel="tooltip" title="Remaining amount"
+                                    data-placement="bottom">
+                                    <span>Remaining amount:</span>
+                                  </a>
+
+                                </div>
+                                <div class="col-8 col-md-7">
+                                  <span class="navbar-brand" id="Remainingamount">0</span><span> USDT</span>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-2 rules"> </div>
+                                <div class="col-4 col-md-3">
+                                  <a class="navbar-brand" rel="tooltip" title="Effective amount"
+                                    data-placement="bottom">
+                                    <span>Interest amount:</span>
+                                  </a>
+
+                                </div>
+                                <div class="col-8 col-md-7">
+                                  <span class="navbar-brand" id="Interestspan">0</span><span> USDT</span>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-2 rules"> </div>
+                                <div class="col-4 col-md-3">
+                                  <a class="navbar-brand" rel="tooltip" title="Order Time" data-placement="bottom">
+                                    <span>Order Time:</span>
+                                  </a>
+
+                                </div>
+                                <div class="col-8 col-md-7">
+                                  <span class="navbar-brand" id="deposittimespan">0</span>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-2 rules"> </div>
+                                <div class="col-4 col-md-3">
+                                  <a class="navbar-brand" rel="tooltip" title="Order status" data-placement="bottom">
+                                    <span>Order status:</span>
+                                  </a>
+
+                                </div>
+                                <div class="col-8 col-md-7">
+                                  <span class="navbar-brand" id="orderstatusspan">0</span>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-2 rules"> </div>
+                                <div class="col-4 col-md-3">
+                                  <a class="navbar-brand" rel="tooltip" title="Interest rate" data-placement="bottom">
+                                    <span>Interest rate(day):</span>
+                                  </a>
+                                </div>
+                                <div class="col-8 col-md-7">
+                                  <span class="navbar-brand" style="display: none;" id="ratespan">0</span>
+                                  <button id='ratebutton' style="display: none;" type="button" class="btn btn-primary">
+                                    Buy rate peek card
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-2 rules"> </div>
+                                <div class="col-4 col-md-3">
+                                  <a class="navbar-brand" rel="tooltip" title="Reset times" data-placement="bottom">
+                                    <span>Reset times:</span>
+                                  </a>
+
+                                </div>
+                                <div class="col-8 col-md-7">
+                                  <span class="navbar-brand" id="resettimesspan">0</span>
+                                </div>
+                              </div>
+
+                            </div>
+
+                            <div class="row">
+                              <div class="col-2 rules"> </div>
+                              <div class="col-12 col-md-8">
+                                <blockquote>
+                                  <span class="navbar-brand">Rules:</span>
+                                  <p class="text-muted blockquote">
+                                    1. By default, you cannot check the interest rate of your order, the interest rate
+                                    is a random blind box, if you need to check it, you need to purchase a rate peek
+                                    card.
+                                    <br>
+                                    2. If you are not satisfied with the existing interest rate after you have viewed
+                                    it, you can purchase a reset rate card to reset the interest rate, but the reset
+                                    rate card is also a random blind box and the interest rate for the pledge cycle
+                                    generated again is also a random number between 0.2% and 1.1%.
+
+                                  </p>
+                                </blockquote>
+                              </div>
+                            </div>
+
+
+                          </div>
+
+                          <div style="text-align: right;padding-left: 15px;" class="tab-pane" id="link4">
+                            <style>
+                              #payinquirecard:active,
+                              #payresetratecard:active {
+                                box-shadow: 0 1px 15px 0px #fd5d93;
+                              }
+
+                              #payinquirecard,
+                              #payresetratecard {
+                                border: 1px solid rgb(181 77 214 / 30%);
+
+                              }
+
+
+                              .p5div {
+                                padding-right: 5px;
+                                padding-left: 5px;
+                                text-align: center;
+                              }
+
+                              #payinquirecard:hover,
+                              #payresetratecard:hover {
+                                box-shadow: 0 1px 15px 0px #344675;
+                              }
+                            </style>
+                            <div class="row">
+                              <div id="cardrowd" class="col-6 col-md-3">
+
+                              </div>
+                              <div class="col-6 col-md-3 p5div">
+
+                                <div id="payinquirecard" style=" height: 180px;" class="card ">
+
+                                  <div style="height: 130px;margin: 5px;">
+                                    <img height="120px" src="./assets/img/1.png">
+                                  </div>
+                                  <div style="height: 40px;">
+                                    rate peek card
+                                  </div>
+
+                                </div>
+                                <div style="height: 40px;">
+                                  <i class="tim-icons icon-coins"></i> 5 CLP
+                                </div>
+                              </div>
+                              <div class="col-6 col-md-3 p5div">
+
+                                <div id="payresetratecard" style=" height: 180px;" class="card ">
+                                  <div style="height: 130px;margin: 5px;">
+                                    <img height="120px" src="./assets/img/2.png">
+                                  </div>
+                                  <div style="height: 40px;">
+                                    Reset rate Card
+                                  </div>
+
+                                </div>
+                                <div style="height: 40px;">
+                                  <i class="tim-icons icon-coins"></i> 5/10/15 CLP
+                                </div>
+                              </div>
+
+                              <div class="col-6 col-md-3">
+
+                              </div>
+
+                            </div>
+
+
+                            <div style="text-align: left;" class="row">
+                              <div class="col-2 rules">
+                              </div>
+                              <div class="col-12 col-md-8">
+                                <blockquote>
+                                  <span class="navbar-brand">Rules:</span>
+                                  <p class="text-muted blockquote">
+                                    1. By default, you cannot check the interest rate of your order, the interest rate
+                                    is a random blind box, if you need to check it, you need to purchase a rate peek
+                                    card.
+                                    <br>
+                                    2. If you are not satisfied with the existing interest rate after checking, you can
+                                    purchase a reset rate card to reset the interest rate, but the card is also a random
+                                    blind box. The interest rate generated again for the pledge cycle is also a random
+                                    number between 0.2% and 1.1%.
+                                    <br>
+                                    3. The amount of the reset rate card is 5 token for the first purchase, 10 token for
+                                    the second, and 15 token for the third, with a maximum of three resets per order.
+                                    <br>
+                                    4. We will launch more cards later, please look forward to it!
+                                  </p>
+                                </blockquote>
+                              </div>
+                            </div>
+
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div style="text-align: center;" class="col-md-12">
+          <h6>Contract: TXnCQGCDg5z2D6DgkQ8wrf69gtEX1Wneer</h6>
+        </div>
+        <div class="row">
+
+          <div style="text-align: center;" class="col-md-12">
+            <h3>Don't contact me</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div style="text-align: center;" class="col-md-12">
+            <ul style="flex-direction: row;" class="navbar-nav justify-content-center">
+              <li style="width: 65px;" class="nav-item p-0">
+                <a class="nav-link" rel="tooltip" title="Follow us on github" data-placement="bottom"
+                  href="https://github.com/chameleonprotocol" target="_blank">
+                  <i class="fab fa-github"></i>
+                  <p>Github</p>
+                </a>
+              </li>
+              <li style="width: 95px;" class="nav-item p-0">
+                <a class="nav-link" rel="tooltip" title="Follow us on email" data-placement="bottom"
+                  href="mailto:support_clp@protonmail.com" target="_blank">
+                  <i class="tim-icons icon-email-85"></i>
+                  <p>Email</p>
+                </a>
+              </li>
+              <!-- <li style="width: 65px;" class="nav-item p-0">
+                <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"
+                  href="#" target="_blank">
+                  <i class="fab fa-instagram"></i>
+                  <p>Instagram</p>
+                </a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+    </footer>
+  </div>
+  <a id="createInvote"></a>
+
+  <!--   Core JS Files   -->
+  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="./assets/js/plugins/bootstrap-switch.js"></script>
+  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!-- Chart JS -->
+  <script src="./assets/js/plugins/chartjs.min.js"></script>
+  <script src="./assets/js/plugins/moment.min.js"></script>
+  <script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  <script src="./assets/demo/demo.js"></script>
+  <script src="./assets/js/blk-design-system.min.js?v=1.0.0" type="text/javascript"></script>
+  <script src="./assets/js/clipboard.min.js"></script>
+  <script src="base64.js"></script>
+  <script src="./assets/layer/layer.js"></script>
+  <script src="./tip_files/classie.js"></script>
+  <script src="./tip_files/notificationFx.js"></script>
+
+  <script>
+    document.write("<script src='main.js?v=" + new Date().getTime() + "'><\/script>");
+  </script>
+  <script>
+    $(document).ready(function () {
+      blackKit.initDatePicker();
+      blackKit.initSliders();
+      main.init();
+    });
+  </script>
+</body>
+
+</html>
